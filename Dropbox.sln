@@ -5,6 +5,10 @@ VisualStudioVersion = 17.5.33318.248
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Dropbox", "Dropbox\Dropbox.csproj", "{37FFF060-15B8-4840-812B-E5EAFFEFC95D}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ClickLib", "ClickLib\ClickLib\ClickLib.csproj", "{53C2F2D1-5784-46F0-BD32-6C09B605C3FB}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ECommons", "ECommons\ECommons\ECommons.csproj", "{C46B42BF-8589-4331-A8B5-C0D11C64ACD3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +25,22 @@ Global
 		{37FFF060-15B8-4840-812B-E5EAFFEFC95D}.Release|Any CPU.Build.0 = Release|x64
 		{37FFF060-15B8-4840-812B-E5EAFFEFC95D}.Release|x64.ActiveCfg = Release|x64
 		{37FFF060-15B8-4840-812B-E5EAFFEFC95D}.Release|x64.Build.0 = Release|x64
+		{53C2F2D1-5784-46F0-BD32-6C09B605C3FB}.Debug|Any CPU.ActiveCfg = Debug|x64
+		{53C2F2D1-5784-46F0-BD32-6C09B605C3FB}.Debug|Any CPU.Build.0 = Debug|x64
+		{53C2F2D1-5784-46F0-BD32-6C09B605C3FB}.Debug|x64.ActiveCfg = Debug|x64
+		{53C2F2D1-5784-46F0-BD32-6C09B605C3FB}.Debug|x64.Build.0 = Debug|x64
+		{53C2F2D1-5784-46F0-BD32-6C09B605C3FB}.Release|Any CPU.ActiveCfg = Release|x64
+		{53C2F2D1-5784-46F0-BD32-6C09B605C3FB}.Release|Any CPU.Build.0 = Release|x64
+		{53C2F2D1-5784-46F0-BD32-6C09B605C3FB}.Release|x64.ActiveCfg = Release|x64
+		{53C2F2D1-5784-46F0-BD32-6C09B605C3FB}.Release|x64.Build.0 = Release|x64
+		{C46B42BF-8589-4331-A8B5-C0D11C64ACD3}.Debug|Any CPU.ActiveCfg = Debug|x64
+		{C46B42BF-8589-4331-A8B5-C0D11C64ACD3}.Debug|Any CPU.Build.0 = Debug|x64
+		{C46B42BF-8589-4331-A8B5-C0D11C64ACD3}.Debug|x64.ActiveCfg = Debug|x64
+		{C46B42BF-8589-4331-A8B5-C0D11C64ACD3}.Debug|x64.Build.0 = Debug|x64
+		{C46B42BF-8589-4331-A8B5-C0D11C64ACD3}.Release|Any CPU.ActiveCfg = Release|x64
+		{C46B42BF-8589-4331-A8B5-C0D11C64ACD3}.Release|Any CPU.Build.0 = Release|x64
+		{C46B42BF-8589-4331-A8B5-C0D11C64ACD3}.Release|x64.ActiveCfg = Release|x64
+		{C46B42BF-8589-4331-A8B5-C0D11C64ACD3}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

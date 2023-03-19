@@ -8,11 +8,6 @@
         "resolved": "2.1.10",
         "contentHash": "S6NrvvOnLgT4GDdgwuKVJjbFo+8ZEj+JsEYk9ojjOR/MMfv1dIFpT8aRJQfI24rtDcw1uF+GnSSMN4WW1yt7fw=="
       },
-      "ILRepack": {
-        "type": "Transitive",
-        "resolved": "2.0.18",
-        "contentHash": "sR5Aj3JLDbA8JwESfWYfigSz5k1oNSHPN434W1LX8sboWJYEOSQP/KkvZGmJKPgajzSUKkl2jDar3LPZiMFU4Q=="
-      },
       "Reloaded.Memory": {
         "type": "Transitive",
         "resolved": "7.1.0",
@@ -21,7 +16,6 @@
       "clicklib": {
         "type": "Project",
         "dependencies": {
-          "ILRepack": "[2.0.18, )",
           "Reloaded.Memory": "[7.1.0, )"
         }
       },
