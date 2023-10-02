@@ -79,7 +79,7 @@ namespace Dropbox
             }
         }
 
-        private void Framework_Update(Dalamud.Game.Framework framework)
+        private void Framework_Update(object framework)
         {
             if(Active && Svc.Condition[ConditionFlag.TradeOpen])
             {
@@ -145,7 +145,7 @@ namespace Dropbox
                         var text = MemoryHelper.ReadSeString(&textNode->NodeText).ExtractText();
                         if (text.EqualsAny(s))
                         {
-                            PluginLog.Verbose($"SelectYesno {s} addon {i}");
+                            PluginLog.Verbose($"SelectYesno {s.Print()} addon {i}");
                             return addon;
                         }
                     }
