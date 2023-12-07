@@ -19,6 +19,10 @@ using Lumina.Excel.GeneratedSheets;
 using System.Security.AccessControl;
 using ECommons.Configuration;
 using ECommons.Automation;
+using Dalamud.Game.Addon.Lifecycle;
+using Dalamud.Game.Addon.Lifecycle.AddonArgTypes;
+using FFXIVClientStructs.FFXIV.Client.UI;
+using ECommons.UIHelpers.Implementations;
 
 namespace Dropbox
 {
@@ -51,6 +55,30 @@ namespace Dropbox
             {
                 C.Active = false;
             }
+            Svc.AddonLifecycle.RegisterListener(AddonEvent.PostRequestedUpdate, "ContextMenu", ContextMenuHandler);
+        }
+
+        private void ContextMenuHandler(AddonEvent type, AddonArgs args)
+        {
+            /*if (C.Active)
+            {
+                var addon = (AtkUnitBase*)args.Addon;
+                if (IsAddonReady(addon))
+                {
+                    var r = new ReaderContextMenu(addon);
+                    PluginLog.Verbose($"Entries: {r.Count}");
+                    for (int i = 0; i < r.Count; i++)
+                    {
+                        var x = r.Entries[i];
+                        PluginLog.Verbose($"- {x.Name}");
+                        if(x.Name == "Trade" && FrameThrottler.Throttle("TradeAutoClick", 2))
+                        {
+                            Callback.Fire(addon, true, 0, i, 0u, Callback.ZeroAtkValue, Callback.ZeroAtkValue);
+                            addon->Hide(false, false, 0);
+                        }
+                    }
+                }
+            }*/
         }
 
         private void Chat_ChatMessage(XivChatType type, uint senderId, ref SeString sender, ref SeString message, ref bool isHandled)
@@ -248,6 +276,7 @@ namespace Dropbox
         {
             Svc.Framework.Update -= Framework_Update;
             Svc.Chat.ChatMessage -= Chat_ChatMessage;
+            Svc.AddonLifecycle.UnregisterListener(AddonEvent.PostRequestedUpdate, "ContextMenu", ContextMenuHandler);
             ECommonsMain.Dispose();
             P = null;
             C = null;
