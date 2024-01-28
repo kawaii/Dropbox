@@ -13,12 +13,12 @@ namespace Dropbox
 {
     internal unsafe static class TradeTask
     {
-
         internal static bool IsActive => P.TaskManager.IsBusy;
 
-        internal static bool GenericThrottle(bool rethrottle = false) => FrameThrottler.Throttle("TaskThrottle", 15, rethrottle);
+        internal static bool GenericThrottle(bool rethrottle = false) => FrameThrottler.Throttle("TaskThrottle", 4, rethrottle);
 
         internal static volatile bool ConfirmAllowed = false;
+        public static int MaxGil = 1000000;
 
         internal static void Enqueue(TradeQueueEntry entry)
         {

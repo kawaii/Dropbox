@@ -1,28 +1,17 @@
 ﻿using ClickLib.Clicks;
-using Dalamud.Game.Gui.Toast;
 using Dalamud.Game.Text.SeStringHandling.Payloads;
 using Dalamud.Game.Text.SeStringHandling;
 using Dalamud.Game.Text;
 using Dalamud.Memory;
-using Dalamud.Plugin;
-using ECommons;
-using ECommons.DalamudServices;
-using ECommons.ImGuiMethods;
-using ECommons.Logging;
 using ECommons.SimpleGui;
 using ECommons.Throttlers;
 using FFXIVClientStructs.FFXIV.Client.Game;
-using FFXIVClientStructs.FFXIV.Client.Graphics;
 using FFXIVClientStructs.FFXIV.Component.GUI;
-using ImGuiNET;
 using Lumina.Excel.GeneratedSheets;
-using System.Security.AccessControl;
 using ECommons.Configuration;
 using ECommons.Automation;
 using Dalamud.Game.Addon.Lifecycle;
 using Dalamud.Game.Addon.Lifecycle.AddonArgTypes;
-using FFXIVClientStructs.FFXIV.Client.UI;
-using ECommons.UIHelpers.Implementations;
 
 namespace Dropbox
 {
@@ -33,6 +22,8 @@ namespace Dropbox
         internal static Config C;
         internal static Dropbox P;
         const string ThrottleName = "TradeArtificialThrottle";
+        public uint[] TradeableItems;
+        public Memory Memory;
 
         internal TaskManager TaskManager;
 
@@ -56,6 +47,8 @@ namespace Dropbox
                 C.Active = false;
             }
             Svc.AddonLifecycle.RegisterListener(AddonEvent.PostRequestedUpdate, "ContextMenu", ContextMenuHandler);
+            TradeableItems = Svc.Data.GetExcelSheet<Item>().Where(x => !x.IsUntradable).Select(x => x.RowId).ToArray();
+            Memory = new();
         }
 
         private void ContextMenuHandler(AddonEvent type, AddonArgs args)
@@ -223,10 +216,18 @@ namespace Dropbox
                     ImGui.Separator();
                     ImGui.Checkbox($"Not operational", ref C.NoOp);
                 }, null, true),
-                ("Trade Queue", TradeQueueUI.Draw, null, true),
+                ("Item Trade Queue", ItemQueueUI.Draw, null, true),
                 InternalLog.ImGuiTab(),
                 ("Debug", () =>
                 {
+                    if (ImGui.CollapsingHeader("Tasks"))
+                    {
+                        P.TaskManager.TaskStack.Print("\n");
+                        if (ImGui.Button("Step on")) P.TaskManager.SetStepMode(true);
+                        if (ImGui.Button("Step off")) P.TaskManager.SetStepMode(false);
+                        if (ImGui.Button("Step")) P.TaskManager.Step();
+                    }
+                    ImGui.InputInt("Maxgil", ref TradeTask.MaxGil.ValidateRange(1, 1000000));
                     EzThrottler.ImGuiPrintDebugInfo();
                     FrameThrottler.ImGuiPrintDebugInfo();
                     if (ImGui.Button("Open"))
